@@ -3,6 +3,7 @@ import { useState } from "react";
 import LoginForm from "../../components/LoginForm";
 import RegisterForm from "../../components/RegisterForm";
 
+// Componente responsável por renderizar a página de login e registro do usuário.
 export default function LoginAndRegister() {
   const [isNewUser, setIsNewUser] = useState(false);
   return (

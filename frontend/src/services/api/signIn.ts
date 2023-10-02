@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from "axios";
-import { UserDataLoginForm } from "../../interface/forms.interface";
+import { UserLoginFormData } from "../../interface/forms.interface";
 
-export async function signIn(loginData: UserDataLoginForm) {
+// Função responsável por fazer uma requisição do tipo POST ao servidor com o objetivo de realizar o login de um usuário.
+export async function signIn(loginData: UserLoginFormData) {
   try {
     const response: AxiosResponse = await axios.post(
       "http://localhost:8080/user/login",

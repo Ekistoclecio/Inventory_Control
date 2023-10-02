@@ -28,7 +28,6 @@ export default function ProductContent() {
   const {
     searchString,
     setSearchString,
-    searchedProducts,
     handleSearchInputValue,
     setProducts,
     handleOpenCreateEditProductModal,
@@ -41,6 +40,8 @@ export default function ProductContent() {
     productData,
     deleteProduct,
   } = useProductContent();
+
+  const { searchedProducts } = useProductsContext();
 
   return (
     <>

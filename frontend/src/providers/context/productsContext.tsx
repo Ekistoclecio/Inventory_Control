@@ -2,20 +2,12 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useSessionContext } from "./sessionContext";
 import { getUserProducts } from "../../services/api/getUserProducts";
 import { useAlertContext } from "./alertContext";
-import { ProductInterface } from "../../interface/entities.interface";
+import {
+  ProductInterface,
+  ProductsContextInterface,
+} from "../../interface/contexts.interface";
 
-interface ProductsContextInterface {
-  productsArray: ProductInterface[];
-  searchedProducts: ProductInterface[];
-  pagination: number;
-  finishedProducts: boolean;
-  setProductsArray: (val: ProductInterface[]) => void;
-  setPagination: (val: number) => void;
-  setFinishedProducts: (val: boolean) => void;
-  setSearchedProducts: (val: ProductInterface[]) => void;
-  getProducts: () => void;
-  searchProducts: (val: string) => void;
-}
+// Fornece para todo o sistema as variáveis e funções necessárias para a manipulação de estados e lista de produtos do usuário do lado do cliente.
 
 const productsContext = createContext<ProductsContextInterface>(
   {} as ProductsContextInterface
@@ -35,6 +27,7 @@ export const ProductsProvider = (props: any) => {
     [] as ProductInterface[]
   );
 
+  // Restaura o status de paginação e lista de produtos caso o status da sessão mude.
   useEffect(() => {
     if (userSession?.logged) {
       setPagination(0);
@@ -43,13 +36,15 @@ export const ProductsProvider = (props: any) => {
     }
   }, [userSession]);
 
+  // Realiza uma nova busca no banco de dados se o status que representa se todos os produtos já foram buscados no banco de dados mudar,
+  // mantendo a lista de produtos local atualizada.
   useEffect(() => {
     if (userSession?.logged) {
-      console.log("entrei");
       getProducts();
     }
   }, [finishedProducts]);
 
+  // Função responsável por garantir que não haverá produtos repetidos na lista de produtos local.
   function removeRepetitionsArray(
     curArray: ProductInterface[],
     receivedArray: ProductInterface[]
@@ -65,6 +60,7 @@ export const ProductsProvider = (props: any) => {
     return [...curArrayWithoutRepetitions, ...receivedArray];
   }
 
+  // Função responsável por iniciar a requisição da lista de produtos no banco de dados com base na paginação atual.
   async function getProducts() {
     if (!userSession) return;
     if (finishedProducts) return;
@@ -87,6 +83,7 @@ export const ProductsProvider = (props: any) => {
     }
   }
 
+  // Função responsável por iniciar uma pesquisa nos produtos do banco de dados com base em uma string de pesquisa digitada pelo usuário.
   async function searchProducts(searchString: string) {
     if (!userSession) return;
     const response = await getUserProducts(searchString, userSession.token);

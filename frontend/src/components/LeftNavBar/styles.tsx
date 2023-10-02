@@ -44,7 +44,7 @@ export const Drawer = styled(MuiDrawer, {
 
 // ---------------------------------------------------------------------------------------
 
-// Cria uma "div" personalizada que auxilia na organização do layout e do cabeçalho do Drawer, evitando a sobreposição de componentes.
+// Cria uma "div" personalizada que auxilia na organização do layout e do cabeçalho do Drawer
 export const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",

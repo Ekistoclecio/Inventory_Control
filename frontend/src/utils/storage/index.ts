@@ -1,3 +1,4 @@
+// Função responsável por "pegar" valores do localStorage a partir de uma chave (key).
 export function getToStorage(key: string) {
   try {
     const item = localStorage.getItem(key);
@@ -12,6 +13,7 @@ export function getToStorage(key: string) {
   }
 }
 
+// Função responsável por definir valores no localStorage a partir de uma chave (key) e um valor.
 export function setToStorage(key: string, value: any) {
   try {
     const jsonValue = JSON.stringify(value);
@@ -23,6 +25,7 @@ export function setToStorage(key: string, value: any) {
   }
 }
 
+// Função responsável por excluir valores do localStorage a partir de uma chave (key).
 export function deleteDoStorage(key: string) {
   try {
     const item = localStorage.getItem(key);

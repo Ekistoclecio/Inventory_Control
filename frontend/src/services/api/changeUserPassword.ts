@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from "axios";
-import { ChangePasswordForm } from "../../interface/forms.interface";
+import { ChangePasswordFormData } from "../../interface/forms.interface";
 
+// Função responsável por fazer uma requisição do tipo PATCH ao servidor com o objetivo de alterar a senha do usuário.
 export async function changeUserPassword(
-  dataPassword: ChangePasswordForm,
+  dataPassword: ChangePasswordFormData,
   token: string
 ) {
   try {

@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
+// Função responsável por fazer uma requisição do tipo GET ao servidor com o objetivo de buscar a lista de produtos do usuário com base na paginação passada
+// ou buscar uma lista de produtos que coincida com a string de busca enviada.
 function defineRoute(getParam: string | number) {
   if (typeof getParam === "number") {
     return `http://localhost:8080/user/products/${getParam}`;

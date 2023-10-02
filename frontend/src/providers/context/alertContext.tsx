@@ -1,20 +1,7 @@
 import { createContext, useContext, useState } from "react";
+import { AlertContextInterface } from "../../interface/contexts.interface";
 
-interface AlertContextInterface {
-  snackbarProps: SnackbarProps;
-  setSnackbarProps: (val: SnackbarProps) => void;
-  openAlert: (
-    message: string,
-    variant: "error" | "warning" | "info" | "success"
-  ) => void;
-  closeAlert: () => void;
-}
-
-interface SnackbarProps {
-  open: boolean;
-  message: string;
-  variant: "error" | "warning" | "info" | "success";
-}
+// Fornece para todo o sistema as variáveis e funções necessárias para que seja possível exibir em tela alertas personalizados.
 
 const alertContext = createContext<AlertContextInterface>(
   {} as AlertContextInterface
@@ -29,6 +16,7 @@ export const AlertProvider = (props: any) => {
     variant: "success" as "error" | "warning" | "info" | "success",
   });
 
+  // Função responsável por exibir em tela um alerta personalizado com alguma mensagem relevante para o usuário.
   function openAlert(
     message: string,
     variant: "error" | "warning" | "info" | "success"
@@ -42,6 +30,7 @@ export const AlertProvider = (props: any) => {
     console.log(message, variant);
   }
 
+  // Função que permite ao usuário fechar os alertas.
   function closeAlert() {
     setSnackbarProps({ ...snackbarProps, open: false });
   }

@@ -9,3 +9,8 @@ export interface HookCreateEditProductModalProps {
   productId: string;
   productName: string;
 }
+
+// // Interface com as propriedades recebidas pelo hook "useRegisterForm".
+export interface HookRegisterFormProps {
+  changeLoginForm: () => void;
+}

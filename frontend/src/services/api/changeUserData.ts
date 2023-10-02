@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { UserDataEditForm } from "../../interface/forms.interface";
 
+// Função responsável por fazer uma requisição do tipo PUT ao servidor com o objetivo de alterar as informações do usuário.
 export async function changeUserData(
   userData: UserDataEditForm,
   token: string

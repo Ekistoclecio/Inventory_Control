@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from "axios";
-import { UserDataRegisterForm } from "../../interface/forms.interface";
+import { UserRegisterFormData } from "../../interface/forms.interface";
 
-export async function signUp(registerData: UserDataRegisterForm) {
+// Função responsável por fazer uma requisição do tipo POST ao servidor com o objetivo de realizar o cadastro de um novo usuário.
+export async function signUp(registerData: UserRegisterFormData) {
   try {
     const response: AxiosResponse = await axios.post(
       "http://localhost:8080/user/create",

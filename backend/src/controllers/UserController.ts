@@ -42,7 +42,7 @@ export class UserController {
     }
   }
 
-  // Função responsável por realizar o login do usuário, retornando algumas informações e um token de autenticação.
+  // Função responsável por realizar o login do usuário, retornando algumas informações do usuário e um token de autenticação.
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
 

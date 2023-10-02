@@ -1,7 +1,7 @@
 import { CircularProgress, Container } from "@mui/material";
 
 // Uma página de carregamento básica para ser exibida enquanto as informações da sessão do usuário estão sendo carregadas
-export default function LoadingPage() {
+export default function Loading() {
   return (
     <Container
       style={{

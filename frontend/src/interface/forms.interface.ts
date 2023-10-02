@@ -1,3 +1,5 @@
+// Arquivo que descreve as interfaces dos dados utilizados pelos formulários da aplicação.
+
 // Interface do formulario de Registro de um novo usuario
 export interface UserRegisterFormData {
   name: string;

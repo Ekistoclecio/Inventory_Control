@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
+// Função responsável por fazer uma requisição do tipo DELETE ao servidor com o objetivo de excluir um produto da lista de produtos do usuário.
 export async function deleteUserProduct(productName: string, token: string) {
   try {
     const response: AxiosResponse = await axios.delete(

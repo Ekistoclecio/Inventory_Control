@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import { AppBarProps } from "../../interface/componentProps.interface";
 import { useMediaQuery } from "@mui/material";
 
-// Estende o estilo padrão do componente MuiAppBar adicionando alguns estilos personalizados.
+// Estende o estilo padrão do componente MuiAppBar adicionando alguns estilos personalizados para permitir a correta integração com o drawer.
 export const AppBar = styled(MuiAppBar, {
   shouldForwardProp: () => true,
 })<AppBarProps>(({ theme, open, leftNavBarWidth }) => {

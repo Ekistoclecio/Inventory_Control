@@ -9,7 +9,7 @@
 
 ### Ambiente
 
-1. Criar um arquivo .env na pasta backend, seguindo o padrao descrito no arquivo .env.example.
+1. Criar um arquivo .env na pasta backend, seguindo o padrao descrito no arquivo .env.example mantendo a consistencia das informações (Para testes o ideal é manter as informaçoes como esta copiando o conteudo do arquivo .env.example para dentro do arquivo .env criado).
 
 2. Dentro da pasta backend, executar p comando:
 

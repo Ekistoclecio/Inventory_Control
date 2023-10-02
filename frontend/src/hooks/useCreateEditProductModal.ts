@@ -40,7 +40,6 @@ export function useCreateEditProductModal({
 
   // Função responsável por inicializar o processo de adição de um novo produto, exibindo uma mensagem de sucesso ou erro caso o produto seja ou não adicionado.
   async function addProduct(data: DataCreateEditProductForm) {
-    console.log(data);
     if (!userSession) return;
     const response = await createProduct(data, userSession.token);
     if (response?.status === 401) {

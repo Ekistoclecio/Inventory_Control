@@ -6,7 +6,7 @@ type JwtPayload = {
   id: string;
 };
 
-// Função responsável por realizar a autenticação do usuário, verificando se o token recebido é um token de sessão válido para este usuário.
+// Middleware responsável por realizar a autenticação do usuário, verificando se o token recebido é um token de sessão válido para este usuário.
 export const authMiddleware = async (
   req: Request,
   res: Response,

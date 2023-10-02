@@ -7,56 +7,22 @@ import {
   Typography,
 } from "@mui/material";
 import { RegisterFormProps } from "../../interface/componentProps.interface";
-import { useForm } from "react-hook-form";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useState } from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { UserRegisterFormData } from "../../interface/forms.interface";
-import { signUp } from "../../services/api/signUp";
-import { useAlertContext } from "../../providers/context/alertContext";
+import { useRegisterForm } from "../../hooks/useRegisterForm";
 
-const registerFormSchema = z
-  .object({
-    name: z.string().nonempty("O nome é obrigatório"),
-    lastName: z.string().nonempty("O sobrenome é obrigatório"),
-    email: z
-      .string()
-      .nonempty("O e-mail é obrigatório")
-      .email("Formato de e-mail inválido"),
-    password: z.string().min(6, "A senha precisa de no mínimo 6 caracteres"),
-    confirmPassword: z.string(),
-  })
-  .refine((fields) => fields.password === fields.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "As senhas precisam ser iguais",
-  });
-
-type RegisterFormData = z.infer<typeof registerFormSchema>;
-
+// Componente responsável por renderizar o formulário de registro do usuário.
 export default function RegisterForm({ changeLoginForm }: RegisterFormProps) {
-  const { openAlert } = useAlertContext();
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const {
-    register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<RegisterFormData>({
-    mode: "all",
-    resolver: zodResolver(registerFormSchema),
-  });
-
-  async function userRegister(registerData: UserRegisterFormData) {
-    const response = await signUp(registerData);
-    if (response?.status && response.status >= 200 && response.status <= 300) {
-      openAlert(response.data.message, "success");
-      changeLoginForm();
-    } else {
-      openAlert(response?.data.message, "error");
-    }
-  }
+    userRegister,
+    errors,
+    register,
+    showPassword,
+    setShowPassword,
+    showConfirmPassword,
+    setShowConfirmPassword,
+  } = useRegisterForm({ changeLoginForm });
   return (
     <Box width={280} padding={2}>
       <Typography variant="h6" marginBottom={2} textAlign={"center"}>

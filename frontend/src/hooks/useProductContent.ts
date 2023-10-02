@@ -2,9 +2,10 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useAlertContext } from "../providers/context/alertContext";
 import { useProductsContext } from "../providers/context/productsContext";
 import { useSessionContext } from "../providers/context/sessionContext";
-import { ProductInterface } from "../interface/entities.interface";
 import { deleteUserProduct } from "../services/api/deleteUserProduct";
+import { ProductInterface } from "../interface/contexts.interface";
 
+// Hook responsável por gerir a lógica do componente "ProductContent".
 export function useProductContent() {
   const {
     productsArray,
@@ -29,6 +30,7 @@ export function useProductContent() {
     [] as ProductInterface[]
   );
 
+  // Sempre que o servidor retornar uma nova lista de produtos ou uma lista de produtos pesquisados, atualiza a lista de produtos exibidos na tabela.
   useEffect(() => {
     if (searchedProducts.length <= 0) {
       setProducts(productsArray);
@@ -37,10 +39,12 @@ export function useProductContent() {
     }
   }, [productsArray, searchedProducts]);
 
+  // Garante que o sistema fará uma pesquisa por produtos no banco de dados sempre que a variável de pesquisa (searchString) for alterada.
   useEffect(() => {
     searchProducts(searchString);
   }, [searchString]);
 
+  // Função responsável por carregar mais produtos sempre que o usuário realiza o scroll até ao final da tabela.
   async function handleScroll() {
     const scrollContainer = scrollContainerRef.current;
     if (
@@ -48,13 +52,13 @@ export function useProductContent() {
       scrollContainer.scrollTop + scrollContainer.clientHeight >=
         scrollContainer.scrollHeight
     ) {
-      console.log("EXECUTEI");
       setLoadingMoreData(true);
       await getProducts();
       setLoadingMoreData(true);
     }
   }
 
+  // Função responsável por abrir o modal de criar/editar produto, passando alguns dados que irão determinar se o modal será de criação ou edição de produto.
   function handleOpenCreateEditProductModal(
     productName?: string,
     productQuantity?: number,
@@ -77,6 +81,7 @@ export function useProductContent() {
     }
   }
 
+  // Função responsável por iniciar a exclusão de um produto, retornando uma mensagem de sucesso ou erro caso o produto seja ou não excluído.
   async function deleteProduct(productName: string) {
     if (!userSession) return;
     const response = await deleteUserProduct(productName, userSession.token);
@@ -96,10 +101,10 @@ export function useProductContent() {
     }
   }
 
+  // Função responsável por realizar a pesquisa de produtos à medida que o usuário vai digitando na barra de busca.
   function handleSearchInputValue(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    console.log("teste");
     setSearchString(event.target.value);
     searchProducts(event.target.value);
   }

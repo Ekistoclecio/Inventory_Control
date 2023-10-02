@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Schema utilizado na validação dos dados digitados no formulário de criar/editar um produto.
+// Schema utilizado na validação dos dados digitados no formulário de criar/editar produto.
 export const createEditProductFormSchema = z.object({
   newProductName: z.string().nonempty("O nome é obrigatório"),
   newProductQuantity: z

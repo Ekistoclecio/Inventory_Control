@@ -8,9 +8,10 @@ import LeftNavBar from "../../components/LeftNavBar";
 import TopNavBar from "../../components/TopNavBar";
 import { Outlet } from "react-router-dom";
 
-const LeftNavBarWidth = 240;
+const LeftNavBarWidth = 240; // Define a largura da barra de navegação lateral.
 
-export default function MiniDrawer() {
+// Componente responsável por renderizar a página quando o usuário está logado.
+export default function Home() {
   const theme = useTheme();
   const [drawerLeftNavBarIsOpen, setDrawerLeftNavBarIsOpen] = useState(false);
 

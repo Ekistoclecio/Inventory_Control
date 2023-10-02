@@ -2,7 +2,7 @@ import { Theme } from "@mui/material/styles";
 import { DrawerProps as MuiDrawerProps } from "@mui/material/Drawer";
 import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 
-// Todas as interfaces que descrevem as propriedades recebidas por determinados componentes.
+// Interfaces que descrevem as propriedades recebidas por determinados componentes.
 
 // LeftNavBar Componentes
 export interface LeftNavBarProps {
@@ -35,21 +35,17 @@ export interface AppBarProps extends MuiAppBarProps {
 export interface LoginFormProps {
   changeRegisterForm: () => void;
 }
-//-----------------------------------------------------------------------
 
 // RegisterForm Componente
 export interface RegisterFormProps {
   changeLoginForm: () => void;
 }
-//-----------------------------------------------------------------------
 
 // ChangePasswordModal Componente
-
 export interface ChangePasswordModalProps {
   isOpenModalChangePassword: boolean;
   closeChangePasswordModal: () => void;
 }
-//-----------------------------------------------------------------------
 
 // CreateEditProductModal Componente
 export interface CreateEditProductModalProps {

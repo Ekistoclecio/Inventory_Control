@@ -4,9 +4,10 @@ import { Alert } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import { useSessionContext } from "./providers/context/sessionContext";
 import { useAlertContext } from "./providers/context/alertContext";
-import LoadingPage from "./pages/LoadingPage";
+import LoadingPage from "./pages/Loading";
 import { router } from "./routes/routes";
 
+// Componente central da aplicação que exibe a página de login/registro para usuários não logados ou permite o acesso à aplicação para usuários com sessão ativa.
 function App() {
   const { userSession } = useSessionContext();
   const { snackbarProps, closeAlert } = useAlertContext();

@@ -6,22 +6,13 @@ import {
 } from "../../utils/storage";
 import { signIn } from "../../services/api/signIn";
 import { useAlertContext } from "./alertContext";
-import { UserDataLoginForm } from "../../interface/forms.interface";
+import { UserLoginFormData } from "../../interface/forms.interface";
+import {
+  SessionContextInterface,
+  UserSessionInterface,
+} from "../../interface/contexts.interface";
 
-interface SessionContextInterface {
-  userSession: UserSessionInterface | undefined;
-  setUserSession: (val: UserSessionInterface) => void;
-  login: (loginData: UserDataLoginForm) => void;
-  logout: () => void;
-}
-
-interface UserSessionInterface {
-  name: string;
-  lastName: string;
-  email: string;
-  token: string;
-  logged: boolean;
-}
+// Fornece para todo o sistema as variáveis e funções necessárias para a manipulação de estados relacionados à sessão atual do usuário.
 
 const sessionContext = createContext<SessionContextInterface>(
   {} as SessionContextInterface
@@ -41,6 +32,7 @@ export const SessionProvider = (props: any) => {
   const { openAlert } = useAlertContext();
   const [userSession, setUserSession] = useState<UserSessionInterface>();
 
+  // Assim que a aplicação é renderizada, carrega os dados da sessão armazenados no localStorage, se existirem.
   useEffect(() => {
     const activeSession = getToStorage("activeSession");
     if (activeSession) {
@@ -50,7 +42,8 @@ export const SessionProvider = (props: any) => {
     }
   }, []);
 
-  async function login(loginData: UserDataLoginForm) {
+  // Função responsável por iniciar o login do usuário e exibir uma mensagem de erro caso o login não seja bem-sucedido.
+  async function login(loginData: UserLoginFormData) {
     const response = await signIn(loginData);
     if (response?.status && response.status >= 200 && response.status <= 300) {
       setUserSession({ ...response.data, logged: true });
@@ -61,6 +54,7 @@ export const SessionProvider = (props: any) => {
     }
   }
 
+  // Função responsável por realizar o logout do usuário.
   function logout() {
     window.location.href = "/";
     setUserSession(defaultUserSessionObject);

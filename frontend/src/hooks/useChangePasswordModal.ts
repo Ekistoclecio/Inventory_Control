@@ -11,6 +11,7 @@ import { ChangePasswordFormData } from "../interface/forms.interface";
 import { changeUserPassword } from "../services/api/changeUserPassword";
 import { HookChangePasswordModalProps } from "../interface/hooksProps.interface";
 
+// Hook responsável por gerir a lógica do componente "ChangePasswordModal".
 export function useChangePasswordModal({
   closeChangePasswordModal,
 }: HookChangePasswordModalProps) {
@@ -31,7 +32,6 @@ export function useChangePasswordModal({
 
   // Função responsável por inicializar o processo de alteração de senha do usuário, exibindo uma mensagem de sucesso ou erro caso a senha seja ou não alterada.
   async function changePassword(dataPassword: ChangePasswordFormData) {
-    console.log(dataPassword);
     if (!userSession) return;
     const response = await changeUserPassword(dataPassword, userSession.token);
     if (response?.status === 401) {
