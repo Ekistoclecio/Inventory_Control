@@ -75,7 +75,9 @@ export function useCreateEditProductModal({
         [...productsArray].map((item) => {
           if (item.id === productId) {
             return {
-              name: data.newProductName,
+              name:
+                data.newProductName.charAt(0).toUpperCase() +
+                data.newProductName.slice(1),
               quantity: data.newProductQuantity,
               id: productId,
             };

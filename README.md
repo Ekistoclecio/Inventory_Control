@@ -1,10 +1,10 @@
-# Inventory_Control
+# Inventory Control
 
 ## Introdução
 
 Este projeto tem como objetivo elaborar uma aplicação simples de controle de estoque que permite ao usuário fazer login e controlar sua própria lista de produtos.
 
-- O arquivo documentation.pdf que se encontra dentro da pasta documentation possui uma descrição mais detalhada acerca do funcionamento da aplicação e de cada uma das funcionalidades implementadas.
+- O arquivo Documentation.pdf que se encontra dentro da pasta documentation possui uma descrição mais detalhada acerca do funcionamento da aplicação e de cada uma das funcionalidades implementadas.
 
 ## Tecnologias utilizadas
 

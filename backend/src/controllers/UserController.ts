@@ -19,7 +19,7 @@ export class UserController {
       if (uniqueEmailValidation) {
         return res
           .status(400)
-          .json({ message: "O email informado ja foi cadastrado" });
+          .json({ message: "O e-mail informado ja foi cadastrado" });
       }
 
       const hashPassword = await bcrypt.hash(password, 10);
@@ -54,13 +54,13 @@ export class UserController {
       const user = await userRepository.findOneBy({ email });
 
       if (!user) {
-        return res.status(400).json({ message: "Email ou senha inválidos" });
+        return res.status(400).json({ message: "E-mail ou senha inválidos" });
       }
 
       const verifyPassword = await bcrypt.compare(password, user.password);
 
       if (!verifyPassword) {
-        return res.status(400).json({ message: "Email ou senha inválidos" });
+        return res.status(400).json({ message: "E-mail ou senha inválidos" });
       }
 
       const token = jwt.sign({ id: user.id }, process.env.JWT_PASS, {

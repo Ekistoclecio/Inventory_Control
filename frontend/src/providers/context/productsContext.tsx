@@ -30,7 +30,7 @@ export const ProductsProvider = (props: any) => {
   // Restaura o status de paginação e lista de produtos caso o status da sessão mude.
   useEffect(() => {
     if (userSession?.logged) {
-      setPagination(() => 0);
+      setPagination(0);
       setFinishedProducts(false);
       getProducts(0);
     }

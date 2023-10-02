@@ -13,6 +13,7 @@ export function useProductContent() {
     searchedProducts,
     searchProducts,
     setProductsArray,
+    pagination,
   } = useProductsContext();
   const { userSession, logout } = useSessionContext();
   const { openAlert } = useAlertContext();
@@ -53,7 +54,7 @@ export function useProductContent() {
         scrollContainer.scrollHeight
     ) {
       setLoadingMoreData(true);
-      await getProducts();
+      await getProducts(pagination);
       setLoadingMoreData(true);
     }
   }
