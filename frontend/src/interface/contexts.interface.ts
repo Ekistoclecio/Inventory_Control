@@ -1,5 +1,6 @@
 // Arquivo que descreve as interfaces dos dados utilizados pelos contextos da aplicação.
 
+import { number } from "zod";
 import { UserLoginFormData } from "./forms.interface";
 
 // Interfaces utilizadas em "alertContext".
@@ -36,7 +37,7 @@ export interface ProductsContextInterface {
   setPagination: (val: number) => void;
   setFinishedProducts: (val: boolean) => void;
   setSearchedProducts: (val: ProductInterface[]) => void;
-  getProducts: () => void;
+  getProducts: (val: number) => void;
   searchProducts: (val: string) => void;
 }
 

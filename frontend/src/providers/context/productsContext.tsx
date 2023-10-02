@@ -30,9 +30,9 @@ export const ProductsProvider = (props: any) => {
   // Restaura o status de paginação e lista de produtos caso o status da sessão mude.
   useEffect(() => {
     if (userSession?.logged) {
-      setPagination(0);
+      setPagination(() => 0);
       setFinishedProducts(false);
-      getProducts();
+      getProducts(0);
     }
   }, [userSession]);
 
@@ -40,7 +40,7 @@ export const ProductsProvider = (props: any) => {
   // mantendo a lista de produtos local atualizada.
   useEffect(() => {
     if (userSession?.logged) {
-      getProducts();
+      getProducts(pagination);
     }
   }, [finishedProducts]);
 
@@ -61,10 +61,11 @@ export const ProductsProvider = (props: any) => {
   }
 
   // Função responsável por iniciar a requisição da lista de produtos no banco de dados com base na paginação atual.
-  async function getProducts() {
+  async function getProducts(curPagination: number) {
     if (!userSession) return;
     if (finishedProducts) return;
-    const response = await getUserProducts(pagination, userSession.token);
+
+    const response = await getUserProducts(curPagination, userSession.token);
     if (response?.status === 401) {
       logout();
     } else if (
@@ -87,7 +88,6 @@ export const ProductsProvider = (props: any) => {
   async function searchProducts(searchString: string) {
     if (!userSession) return;
     const response = await getUserProducts(searchString, userSession.token);
-    console.log(response?.data);
     if (response?.status === 401) {
       logout();
     } else if (

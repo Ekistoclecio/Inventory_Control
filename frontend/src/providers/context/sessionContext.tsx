@@ -49,7 +49,6 @@ export const SessionProvider = (props: any) => {
       setUserSession({ ...response.data, logged: true });
       setToStorage("activeSession", { ...response.data, logged: true });
     } else {
-      console.log(response?.data.message);
       openAlert(response?.data.message, "error");
     }
   }

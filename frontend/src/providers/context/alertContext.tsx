@@ -26,8 +26,6 @@ export const AlertProvider = (props: any) => {
       open: true,
       variant,
     });
-
-    console.log(message, variant);
   }
 
   // Função que permite ao usuário fechar os alertas.
